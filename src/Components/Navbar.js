@@ -48,17 +48,18 @@ const Navbar = ({setSearchParameter,setSort}) => {
       <AppBar position="static" color='secondary' sx={{mt:1}}>
         <Toolbar>
         <Grid container alignItems='center' justifySelf='center'>
-        <Grid item sm={12} xs={12} md={6} lg={6} >
+        <Grid item sm={12} xs={12} md={6} lg={4} textAlign='center'  >
           <Typography
             variant="h4"
             noWrap
             component="div"
+            color='info'
             sx={{ flexGrow: 1,alignSelf:{sm:'center',xs:'center'},fontFamily:"Georgia, serif"}}
           >
           NEWS AGGREAGATOR
           </Typography>
           </Grid>
-          <Grid item sm={6} xs={12} md={4}  lg={4} >
+          <Grid item sm={6} xs={12} md={4}  lg={4} textAlign='center' >
           <TextField
           id="filled-search"
           label="Search field"
@@ -68,10 +69,12 @@ const Navbar = ({setSearchParameter,setSort}) => {
           onChange={changeHandler}
           value={search}
           sx={{ input: { color: 'white' }}}
+         
+          
         />
         
           </Grid>
-          <Grid item lg={2} md={2} sm={6} xs={12} >
+          <Grid item lg={4} md={2} sm={6} xs={12} textAlign='center' >
           <FormControl sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-controlled-open-select-label">Sort by</InputLabel>
         <Select

@@ -1,4 +1,4 @@
-import { Box, Card, CircularProgress, Grid, Pagination } from '@mui/material';
+import { Box, Button, Card, CircularProgress, Grid, Pagination } from '@mui/material';
 import React, { useEffect,useState } from 'react';
 import Axios from 'axios'; 
 import { styled } from '@mui/material/styles';
@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Cards = ({searchParameter,sort}) => {
@@ -18,6 +19,18 @@ const Cards = ({searchParameter,sort}) => {
   const[isLoading,setIsLoading]=useState(true);
   const [page, setPage] = useState(1);
   const [cnt, setCnt] = useState(0);
+
+  const btnProps = {
+    ':hover': {
+      bgcolor: '#03b6fc', // theme.palette.primary.main
+      color: 'white',
+    },
+    color: 'Black',
+    borderColor:'black',
+    fontFamily:"Georgia, serif",
+    fontWeight:'bold'
+  }
+
   async function getData(baseURL){
     let url=baseURL;
       if(sort){
@@ -47,29 +60,30 @@ const Cards = ({searchParameter,sort}) => {
 
 
   return (
-    <>
+   
+      <>
     {isLoading?<Box sx={{mt:4,mb:4,display: 'flex',alignItems:'center', justifyContent: 'center'}}>
      <CircularProgress />
    </Box>:
-   <Grid container spacing={2} sx={{ml:6,mt:2}}>
+   <Grid container spacing={2} sx={{ml:8,mt:2}}>
       
       { data.length===0?<> <Typography sx={{textAlign:'center'}}> No Results Are Found </Typography> 
-      <Typography sx={{textAlign:'center'}}>Please Search for different topic </Typography>
+      <Typography sx={{textAlign:'center',fontFamily:"Georgia, serif"}}>Please Search for different topic </Typography>
       </>
       : <>{data.map((item) => {
-        const {author,urlToImage,title,publishedAt,description,content}=item;
+        const {author,url,urlToImage,title,publishedAt,description}=item;
         console.log(author);
         return (
           
           <Grid item lg={4} md={6} sm={6} xs={12}>
-    <Card sx={{ maxWidth: 350,border:1,elevation:1,height:450}}>
+    <Card sx={{ maxWidth: 350,border:1,elevation:1,height:505,fontFamily:"Georgia, serif"}}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[1000] }} aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[1000],width:50,height:50 }} aria-label="recipe">
            <img src={(author===null)?`https://ui-avatars.com/api/?background=random&$name=John}` :`https://ui-avatars.com/api/?background=random&name=${author.split(" ")[0]}}`} alt="" />
           </Avatar>
         }
-       
+        sx={{fontFamily:"Georgia, serif",fontWeight:'bolder'}}
         title={title}
         subheader={publishedAt.split("T")[0]}
       />
@@ -80,9 +94,14 @@ const Cards = ({searchParameter,sort}) => {
         alt="Paella dish"
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {description}
+        <Typography variant="body2" color="text.secondary" sx={{fontFamily:"Georgia, serif",fontWeight:'bold'}}>
+          {description.slice(0,200)}
         </Typography>
+        <Box  sx={{textAlign:'center',my:2}}>
+        <Button sx={btnProps} variant='outlined' href={url} target='_blank'  >
+        View Full Article
+        </Button>
+        </Box>
       </CardContent>
     </Card>
     </Grid>
