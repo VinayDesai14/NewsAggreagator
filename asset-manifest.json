@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/NewsAggreagator/static/css/main.f855e6bc.css",
+    "main.js": "/NewsAggreagator/static/js/main.2306e2be.js",
+    "index.html": "/NewsAggreagator/index.html",
+    "main.f855e6bc.css.map": "/NewsAggreagator/static/css/main.f855e6bc.css.map",
+    "main.2306e2be.js.map": "/NewsAggreagator/static/js/main.2306e2be.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.2306e2be.js"
+  ]
+}
